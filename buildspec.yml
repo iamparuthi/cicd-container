@@ -3,14 +3,14 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - $(aws ecr get-login --no-include-email --region us-east-1)
+      - $(aws ecr get-login --no-include-email --region ap-south-1)
   build:
     commands:
       - docker build -t myapp:latest .
-      - docker tag myapp:latest 056087778785.dkr.ecr.us-east-1.amazonaws.com/myapp:latest
+      - docker tag myapp:latest 056087778785.dkr.ecr.ap-south-1.amazonaws.com/myapp:latest
   post_build:
     commands:
-      - docker push 056087778785.dkr.ecr.us-east-1.amazonaws.com/myapp:latest
-      - printf '[{"name":mycontainer,"imageUri":"056087778785.dkr.ecr.us-east-1.amazonaws.com/myapp:latest"}]' > imagedefinitions.json
+      - docker push 056087778785.dkr.ecr.ap-south-1.amazonaws.com/myapp:latest
+      - printf '[{"name":mycontainer,"imageUri":"056087778785.dkr.ecr.ap-south-1.amazonaws.com/myapp:latest"}]' > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
